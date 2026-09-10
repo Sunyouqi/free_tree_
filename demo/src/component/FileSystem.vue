@@ -1,0 +1,47 @@
+<script setup lang="ts">
+import { RemoteDriver } from 'vuefinder'
+
+const driver = new RemoteDriver({
+  baseURL: '/api',
+  url: {
+    list: '/files',
+    upload: '/upload',
+    delete: '/delete',
+    rename: '/rename',
+    archive: '/archive',
+    unarchive: '/unarchive',
+    createFile: '/create-file',
+    createFolder: '/create-folder',
+    search: '/search',
+    preview: '/preview',
+    copy: '/copy',
+    move: '/move',
+    save: '/save',
+    download: '/download',
+  },
+})
+</script>
+
+<template>
+  <h1>脚本管理</h1>
+  <p>---------------------------</p>
+  <div>
+    <vue-finder
+      id="my_vuefinder"
+      :driver="driver"
+      :config="{
+        initialPath: 'local://public',
+        persist: true,
+      }"
+      :features="{
+        search: true,
+        fullscreen: false,
+      }"
+    />
+  </div>
+</template>
+<script lang="ts">
+export default {
+  name: 'DocsFileSystem',
+}
+</script>
